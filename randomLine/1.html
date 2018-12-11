@@ -1,0 +1,79 @@
+<html lang="en"><head>
+    <title>Wisdom For Each Day</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+      *,:after,:before {
+        box-sizing: border-box
+      }
+      body{
+        font-family: "Open Sans", Helvetica, Tahoma, Arial, "Microsoft YaHei", 微软雅黑, STXihei, 华文细黑, SimSun, 宋体, Heiti, 黑体, sans-serif;
+        font-size: 18px;
+        color: rgb(34, 34, 34);
+        margin: 0;
+        padding: 0;
+      }
+      main {
+        width: 100%;
+        margin: 200px auto 0 auto;
+        text-align: center
+      }
+      .inner{
+        height:50px;
+        text-align: left;
+        display:inline-block;
+        padding: 0 14px;
+        *display:inline;
+        *zoom:1;
+      }
+      .svg-bg{
+        position: absolute;
+      }
+    </style>
+</head>
+<body>
+    <svg id="custom-svg" class="svg-bg" height="60" width="100%">
+        <polyline id="custom-polyline" style="fill:none;stroke:rgb(34, 34, 34);stroke-width:.5" points=""></polyline>
+      </svg>
+  <main>
+    <div class="inner">
+     当你徘徊在你想得到跟已经得到之间时 有很大可能你将会都失去
+    </div>
+  </main>
+
+<script>
+    var cs=document.getElementById('custom-svg');
+    var cp=document.getElementById('custom-polyline');
+    var w=window.innerWidth;
+    var arr=[0];
+
+    function creatPolyline(n){
+      var i=0, k=0, point=null;
+      while(k<n-2){
+        arr.push(~~(Math.random()*w));
+        k++;
+      }
+      arr.sort((a, b)=> a - b);
+      arr.push(w);
+      while(i<n){
+        point=cs.createSVGPoint();
+        point.x=arr[i];
+        point.y=~~(Math.random()*60);
+        cp.points.appendItem(point);
+        i++;
+      }
+
+    }
+    window.onresize = function(event) {
+      cp.points.clear();
+      arr=[0];
+      w=window.innerWidth;
+      creatPolyline(20);
+    };
+    creatPolyline(20);
+  </script>
+
+</body></html>
